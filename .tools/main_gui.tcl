@@ -5,8 +5,19 @@ set basedir [lindex $argv 0]
 # Define the shape of the window
 set width 600
 set height 750
-set width_offset [expr { ( [winfo vrootwidth  .] - $width  ) / 2 }]
-set height_offset [expr { ( [winfo vrootheigh .] - $height ) / 2 }]
+
+# Check if Tk (and thus winfo) is available
+if {[catch {package require Tk}]} {
+    # Tk is not available, use default values
+    set width_offset 100  ;# Default offset if winfo is not available
+    set height_offset 100 ;# Default offset if winfo is not available
+} else {
+    # Tk is available, calculate offsets dynamically
+    set width_offset [expr { ([winfo vrootwidth .] - $width) / 2 }]
+    set height_offset [expr { ([winfo vrootheigh .] - $height) / 2 }]
+}
+
+
 
 # Define the types for the file searching 
 set yaml_types {
