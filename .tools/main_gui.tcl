@@ -1,6 +1,9 @@
 #! /usr/local/bin/wish
 
-set basedir [lindex $argv 0]
+if {![info exists basedir]} {
+    set exists basedir [lindex $argv 0]
+
+}
 
 # Define the shape of the window
 set width 600
@@ -246,7 +249,11 @@ proc parseYaml {notebook_name} {
 set advanced_options 0
 
 # Read the OS of the computer
-set operative_system [lindex $argv 1]
+if {![info exists operative_system]} {
+    set exists basedir [lindex $argv 1]
+
+}
+
 set is_mac 0
 set is_linux 0
 
