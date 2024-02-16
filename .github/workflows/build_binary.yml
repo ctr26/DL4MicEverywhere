@@ -1,8 +1,5 @@
 name: Build
 on: 
-  push:
-    tags:
-      - '*'
   workflow_call:
     inputs:
       python-version:
