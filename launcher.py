@@ -19,22 +19,24 @@ os_name = platform.system()
 
 # Define the launch command based on the OS
 if os_name == 'Windows':
-    launch_command = resource_path('launch.bat')
+    launch_command = resource_path('Windows_launch.bat')
 elif os_name == 'Darwin':  # Darwin is the underlying OS for macOS
-    launch_command = resource_path('launch.command')
+    launch_command = resource_path('MacOS_launch.command')
 elif os_name == 'Linux':
-    launch_command = resource_path('launch.sh')
+    launch_command = resource_path('Linux_launch.sh')
 else:
     raise ValueError("Unsupported operating system")
 
 # Append './' if necessary, depending on your specific launch commands
 # For example, if your script needs to be executed from its directory
-if os_name in ['Linux', 'Windows']:  # Adjust based on your requirement
-    launch_command += " ./"
+# if os_name in ['Linux', 'Windows']:  # Adjust based on your requirement
+
 
 # Check if the launch file exists
 if not os.path.exists(launch_command):
     raise FileNotFoundError(f"{launch_command} does not exist")
+
+launch_command += " ./"
 
 # Execute the launch command
 try:
