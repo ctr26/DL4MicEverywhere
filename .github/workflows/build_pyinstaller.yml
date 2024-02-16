@@ -38,6 +38,9 @@ jobs:
         run: |
           cd pyinstaller/bootloader
           python waf all --target-arch=64bit # Adjust target-arch as necessary
+      - name: Build
+        run: |
+          pyinstaller launcher.spec
       - name: Upload Installer
         uses: actions/upload-artifact@v2
         with:
