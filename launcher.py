@@ -36,7 +36,7 @@ else:
 if not os.path.exists(launch_command):
     raise FileNotFoundError(f"{launch_command} does not exist")
 
-launch_command += " ./"
+# launch_command += " ./"
 
 # Execute the launch command
 try:
