@@ -28,7 +28,7 @@ jobs:
           mamba-version: "*"
           use-mamba: true
       - name: build
-        run: pyinstaller launcher.spec ${{ inputs.os }}
+        run: pyinstaller launcher.spec 
     
       - name: Upload Installer
         uses: actions/upload-artifact@v2
