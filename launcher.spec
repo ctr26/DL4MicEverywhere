@@ -1,14 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import sys
+import platform
+
+# Default name if not provided
+os_name = platform.platform().lower()
+output_name = f'dl4MicEverywhere_{os_name}'
 
 a = Analysis(
     ['launcher.py'],
     pathex=[],
     binaries=[],
-    datas=[ ('.','.'),
-            ('launch.sh','.'),
-            ('launch.bat','.'),
-            ('launch.command', '.')],
+    datas=[ ('.','.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -24,7 +27,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='launcher',
+    name=output_name,
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
