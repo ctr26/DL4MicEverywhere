@@ -1,4 +1,4 @@
-name: Build
+name: Build PyInstaller 
 on: 
   workflow_call:
     inputs:
@@ -12,7 +12,7 @@ on:
         required: true
         type: string
 jobs:
-  build:
+  build-pyinstaller:
     runs-on: ${{ inputs.os }}
     defaults:
       run:

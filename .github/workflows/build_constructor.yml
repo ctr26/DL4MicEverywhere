@@ -1,0 +1,49 @@
+name: Build constructor
+
+on: 
+  workflow_call:
+    inputs:
+      python-version:
+        required: true
+        type: string
+      os:
+        required: true
+        type: string
+      shell:
+        required: true
+        type: string
+
+jobs:
+  build-constructor:
+    runs-on: ${{ inputs.os }}
+    defaults:
+      run:
+        shell: ${{ inputs.shell }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: environment.yml
+          python-version: ${{ matrix.python-version }}
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          mamba-version: "*"
+          use-mamba: true
+      - name: Check Python version
+        run: python --version
+      - name: constructor 
+        run: constructor --output-dir dist/main
+      - name: Rename installer
+        run: mv dist/main/*.sh dist/main/${{ matrix.python-version }}-${{ matrix.os }}.sh
+      - name: Upload Installer
+        uses: actions/upload-artifact@v2
+        with:
+          name: installer-${{ matrix.python-version }}-${{ matrix.os }}
+          path: dist/main/**/*
+      # - uses: softprops/action-gh-release@v1
+      #   with:
+      #     draft: true
+      #     files: dist/main/*
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is  
