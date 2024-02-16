@@ -35,4 +35,4 @@ jobs:
         with:
           name: installer-${{ inputs.python-version }}-${{ inputs.os }}
           path: |
-            dist/launcher*
+            dist/*
