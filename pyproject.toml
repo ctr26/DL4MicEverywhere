@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.6,<3.13"
 tk = "^0.1.0"
-pyinstaller = "^6.3.0"
+pyinstaller = "^1.0.0"
 
 
 [build-system]
