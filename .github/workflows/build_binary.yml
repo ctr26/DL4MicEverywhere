@@ -1,5 +1,8 @@
 name: Build
 on:
+  push:
+    branches:
+      - "*"
   workflow_call:
     inputs:
       python-version:

@@ -1,0 +1,33 @@
+name: release
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  build:
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: windows-latest
+            shell: cmd /C call {0}
+          - os: ubuntu-latest
+            shell: bash -l {0}
+    uses: ./.github/workflows/build_binary.yml
+    with:
+      python-version: ${{ matrix.python-version }}
+      os: ${{ matrix.os }}
+      shell: ${{ matrix.shell }}
+  release:
+    needs: build
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v2
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/*" 
