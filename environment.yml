@@ -4,6 +4,7 @@ channels:
 - defaults
 dependencies:
 - constructor
+- pyinstaller
 - pip
 - pip:
   - -e .
