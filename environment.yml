@@ -4,15 +4,6 @@ channels:
 - defaults
 dependencies:
 - python=3.9
-- make
-- freetype
-- curl
-- wget
-- unzip
-- git
-- ffmpeg
-- pkg-config
-- nodejs
 - pip
 - pip:
   - -e .
