@@ -27,9 +27,17 @@ jobs:
           miniforge-version: latest
           mamba-version: "*"
           use-mamba: true
-      - name: build
-        run: pyinstaller launcher.spec 
-    
+      - name: Checkout PyInstaller for Bootloader Build
+        uses: actions/checkout@v2
+        with:
+          repository: 'pyinstaller/pyinstaller'
+          submodules: 'recursive'
+          path: 'pyinstaller'
+
+      - name: Build Bootloader
+        run: |
+          cd pyinstaller/bootloader
+          python waf all --target-arch=64bit # Adjust target-arch as necessary
       - name: Upload Installer
         uses: actions/upload-artifact@v2
         with:
