@@ -4,39 +4,10 @@ on:
     tags:
       - "*"
 jobs:
-  build-pyinstaller:
-    strategy:
-      matrix:
-        python-version: ["3.9"]
-        os: [ubuntu-latest, windows-latest]
-        include:
-          - os: windows-latest
-            shell: cmd /C call {0}
-          - os: ubuntu-latest
-            shell: bash -l {0}
-    uses: ./.github/workflows/build_pyinstaller.yml
-    with:
-      python-version: ${{ matrix.python-version }}
-      os: ${{ matrix.os }}
-      shell: ${{ matrix.shell }}
-  build-constructor:
-    strategy:
-      matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
-        os: [ubuntu-latest]
-        include:
-          - os: windows-latest
-            shell: cmd /C call {0}
-          - os: ubuntu-latest
-            shell: bash -l {0}
-    uses: ./.github/workflows/build_constructor.yml
-    with:
-      python-version: ${{ matrix.python-version }}
-      os: ${{ matrix.os }}
-      shell: ${{ matrix.shell }}
-
+  build:
+    uses: ./.github/workflows/build_workflow.yml
   release:
-    needs: [build-pyinstaller, build-constructor]
+    needs: build
     permissions:
       contents: write
     runs-on: ubuntu-latest
