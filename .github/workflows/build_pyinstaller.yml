@@ -33,9 +33,9 @@ jobs:
           repository: "pyinstaller/pyinstaller"
           submodules: "recursive"
           path: "pyinstaller"
-      - name: Install PyInstaller
-        run: |
-          python pyinstaller/setup.py install
+      # - name: Install PyInstaller
+      #   run: |
+      #     python pyinstaller/setup.py install
       - name: Build Bootloader
         run: |
           python pyinstaller/bootloader/waf all --target-arch=64bit
