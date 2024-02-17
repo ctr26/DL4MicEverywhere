@@ -24,8 +24,6 @@ jobs:
         python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
         os: [ubuntu-latest]
         include:
-          - os: windows-latest
-            shell: cmd /C call {0}
           - os: ubuntu-latest
             shell: bash -l {0}
     uses: ./.github/workflows/build_constructor.yml
