@@ -1,5 +1,5 @@
-name: Build PyInstaller 
-on: 
+name: Build PyInstaller
+on:
   workflow_call:
     inputs:
       python-version:
@@ -30,14 +30,14 @@ jobs:
       - name: Checkout PyInstaller for Bootloader Build
         uses: actions/checkout@v2
         with:
-          repository: 'pyinstaller/pyinstaller'
-          submodules: 'recursive'
-          path: 'pyinstaller'
-
+          repository: "pyinstaller/pyinstaller"
+          submodules: "recursive"
+      - name: Install PyInstaller
+        run: |
+          python pyinstaller/setup.py install         path: 'pyinstaller'
       - name: Build Bootloader
         run: |
-          cd pyinstaller/bootloader
-          python waf all --target-arch=64bit # Adjust target-arch as necessary
+          python pyinstaller/bootloader/waf all --target-arch=64bit # Adjust target-arch as necessary
       - name: Build
         run: |
           pyinstaller launcher.spec
