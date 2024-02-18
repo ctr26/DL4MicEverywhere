@@ -54,4 +54,4 @@ jobs:
         with:
           name: installer-${{ inputs.python-version }}-${{ inputs.os }}
           path: |
-            installer-${{ inputs.python-version }}-${{ inputs.os }}.zip
+            **/*.zip
