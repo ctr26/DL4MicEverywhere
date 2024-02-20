@@ -6,7 +6,7 @@ jobs:
   build-pyinstaller:
     strategy:
       matrix:
-        python-version: ["3.9"]
+        python-version: ["3.10"]
         os: [ubuntu-latest, windows-latest]
         include:
           - os: windows-latest
