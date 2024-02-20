@@ -2,7 +2,7 @@ import subprocess
 import platform
 import os
 import sys
-
+from dl4miceverywhere import windows_launch
 # Function to determine resource path
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -19,7 +19,7 @@ os_name = platform.system()
 
 # Define the launch command based on the OS
 if os_name == 'Windows':
-    launch_command = resource_path('Windows_launch.bat')
+    windows_launch.main()
 elif os_name == 'Darwin':  # Darwin is the underlying OS for macOS
     launch_command = resource_path('MacOS_launch.command')
 elif os_name == 'Linux':
