@@ -36,22 +36,25 @@ jobs:
       # - name: Install PyInstaller
       #   run: |
       #     python pyinstaller/setup.py install
-      - name: Build Bootloader
-        run: |
-          cd pyinstaller/bootloader
-          python waf all --target-arch=64bit
+      # - name: Build Bootloader
+      #   run: |
+      #     cd pyinstaller/bootloader
+      #     python waf all --target-arch=64bit
       - name: Build
         run: |
           pyinstaller launcher.spec
-      - name: Archive Release
-        uses: thedoctor0/zip-release@0.7.5
-        with:
-          type: 'zip'
-          directory: "dist"
-          filename: installer-${{ inputs.python-version }}-${{ inputs.os }}.zip
+      # - name: Build
+      #   run: |
+      #     pyinstaller launcher.spec
+      # - name: Archive Release
+      #   uses: thedoctor0/zip-release@0.7.5
+      #   with:
+      #     type: 'zip'
+      #     directory: "dist"
+      #     filename: installer-${{ inputs.python-version }}-${{ inputs.os }}.zip
       - name: Upload Installer
         uses: actions/upload-artifact@v2
         with:
           name: installer-${{ inputs.python-version }}-${{ inputs.os }}
           path: |
-            **/*.zip
+            dist/**/*
