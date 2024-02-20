@@ -13,7 +13,7 @@ a = Analysis(
     binaries=[],
     datas=[ ('.tools','.'),
             ('Dockerfile','.'),
-            ('Dockerfile.gpu','.'),],
+            ('Dockerfile.gpu','.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
