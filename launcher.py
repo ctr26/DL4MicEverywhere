@@ -3,9 +3,11 @@ import platform
 import os
 import sys
 from dl4miceverywhere import windows_launch
+
+
 # Function to determine resource path
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
+    """Get absolute path to resource, works for dev and for PyInstaller"""
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
@@ -14,16 +16,18 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+
 # Determine the OS
 os_name = platform.system()
 
 # Define the launch command based on the OS
-if os_name == 'Windows':
-    windows_launch.main()
-elif os_name == 'Darwin':  # Darwin is the underlying OS for macOS
-    launch_command = resource_path('MacOS_launch.command')
-elif os_name == 'Linux':
-    launch_command = resource_path('Linux_launch.sh')
+if os_name == "Windows":
+    # windows_launch.main()
+    launch_command = resource_path("Windows_launch.bat")
+elif os_name == "Darwin":  # Darwin is the underlying OS for macOS
+    launch_command = resource_path("MacOS_launch.command")
+elif os_name == "Linux":
+    launch_command = resource_path("Linux_launch.sh")
 else:
     raise ValueError("Unsupported operating system")
 
