@@ -1,13 +1,12 @@
 name: build
 on:
   workflow_call:
-  
 jobs:
   build-pyinstaller:
     strategy:
       matrix:
         python-version: ["3.10"]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         include:
           - os: windows-latest
             shell: cmd /C call {0}
