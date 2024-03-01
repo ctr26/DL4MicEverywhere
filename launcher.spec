@@ -4,20 +4,18 @@ import sys
 import platform
 
 # Default name if not provided
-os_name = platform.platform().lower()
-output_name = f'dl4MicEverywhere_{os_name}'
+os_plat = platform.platform().lower()
+os_name = platform.system().lower()  # This gives a clearer response ('Windows', 'Linux', 'Darwin')
+
+output_name = f'dl4MicEverywhere_{os_plat}.{ext}'
+
 
 a = Analysis(
     ['launcher.py'],
     pathex=[],
     binaries=[],
     datas=[
-            ('.tools','.'),
-            ('Windows_launch.bat','.'),
-            ('MacOS_launch.command','.'),
-            ('Linux_launch.sh','.'),
-            ('Dockerfile','.'),
-            ('Dockerfile.gpu','.'),
+            ('./.','.'),
             ],
     hiddenimports=[],
     hookspath=[],
