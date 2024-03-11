@@ -3,6 +3,7 @@ channels:
 - anaconda
 - defaults
 dependencies:
+- python
 - constructor
 - pyinstaller
 - pip
