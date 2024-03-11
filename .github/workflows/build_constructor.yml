@@ -32,9 +32,11 @@ jobs:
           use-mamba: true
       - name: Check Python version
         run: python --version
-      - name: Make full env
-        run: mamba env create -n dl4miceverywhere python=${{ inputs.python-version }} -f environment.gpu.yml
-      - name: constructor 
+      - name: Make python ver env
+        run: mamba create -n dl4miceverywhere python=${{ inputs.python-version }}
+      - name: Update env
+        run: mamba env update -n dl4miceverywhere -f environment.gpu.yml
+      - name: constructor
         run: constructor --output-dir dist/main
       - name: Rename installer
         run: mv dist/main/*.sh dist/main/${{ inputs.python-version }}-${{ inputs.os }}.sh
