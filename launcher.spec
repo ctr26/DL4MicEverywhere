@@ -7,7 +7,7 @@ import platform
 os_plat = platform.platform().lower()
 os_name = platform.system().lower()  # This gives a clearer response ('Windows', 'Linux', 'Darwin')
 
-output_name = f'dl4MicEverywhere_{os_plat}.{ext}'
+output_name = f'dl4MicEverywhere_{os_plat}'
 
 
 a = Analysis(
