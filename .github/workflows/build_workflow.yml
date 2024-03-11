@@ -12,6 +12,8 @@ jobs:
             shell: cmd /C call {0}
           - os: ubuntu-latest
             shell: bash -l {0}
+          - os: macos-latest
+            shell: bash -l {0}
     uses: ./.github/workflows/build_pyinstaller.yml
     with:
       python-version: ${{ matrix.python-version }}
