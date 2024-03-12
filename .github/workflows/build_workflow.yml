@@ -6,14 +6,15 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.10"]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        # os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest,macos_latest]
         include:
           - os: windows-latest
             shell: cmd /C call {0}
           - os: ubuntu-latest
             shell: bash -l {0}
-          - os: macos-latest
-            shell: bash -l {0}
+          # - os: macos-latest
+          #   shell: bash -l {0}
     uses: ./.github/workflows/build_pyinstaller.yml
     with:
       python-version: ${{ matrix.python-version }}
